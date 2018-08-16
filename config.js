@@ -1,0 +1,1 @@
+export const Config = {apiUrl: 'https://waterfalldigital.co.za/capco'}
