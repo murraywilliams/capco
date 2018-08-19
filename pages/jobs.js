@@ -2,15 +2,33 @@ import React, { Component } from 'react'
 import { Config } from "../config.js";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
+import WPAPI from 'wpapi';
 
 export default class Job extends Component {
   static async getInitialProps(context) {
+    this.wp = new WPAPI({
+      endpoint: Config.apiUrl + /wp-json/,
+      username: Config.username,
+      password: Config.password});
+
+    this.wp.jobs = this.wp.registerRoute( 'wp/v2', '/jobs/' );
     const slug = context.query.slug;
     const jobRes = await fetch (`${Config.apiUrl}/wp-json/wp/v2/jobs?slug=${slug}`);
     const job = await jobRes.json();
     return {
       job
     }
+  }
+  handlePost = () => {
+    console.log(this.wp.jobs)
+    this.wp.jobs().create({
+      job_title: 'New Job Pls',
+      status: 'published'
+    })
+    .then(function( res ) {
+      console.log(res.id)
+      console.log('Job Posted!')
+    })
   }
   render() {
     const  job = this.props.job[0]
@@ -27,6 +45,7 @@ export default class Job extends Component {
                 __html: job.acf.job_description
             }}
         />
+        <button onClick={this.handlePost}>Post</button>
       </div>
     )
   }

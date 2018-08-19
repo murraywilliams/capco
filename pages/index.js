@@ -29,6 +29,7 @@ class Index extends Component {
     }
 
     render() {
+        console.log(`This is the username ${Config.username}`)
         const jobs = this.props.jobs.map((job, index) => {
             return (
                 <ul key={index}>
@@ -39,7 +40,6 @@ class Index extends Component {
                     >
                         <a>{job.title.rendered}</a>
                     </Link>
-
                     </li>
                 </ul>
             )
