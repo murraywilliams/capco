@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "next build",
-    "start": "NODE_ENV=development node server.js",
+    "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "npm run build",
     "docker:build": "docker build -t frontend .",
     "docker:clean": "docker rm -f frontend || true",
