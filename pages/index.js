@@ -34,7 +34,7 @@ class Index extends Component {
             return (
                 <ul key={index}>
                     <li>
-                    <Link
+                    <Link prefetch
                         as={`/jobs/${job.slug}`}
                         href={`/jobs?slug=${job.slug}&apiRoute=jobs`}
                     >
