@@ -62,7 +62,6 @@ class Index extends Component {
             <Layout>
                 <h2>LATEST JOBS</h2>
                 {jobs}
-
             </Layout>
         );
     }
